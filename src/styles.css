@@ -66,14 +66,22 @@ button { font: inherit; }
   overflow: hidden;
   border-bottom: 1px solid #202020;
 }
-.opening::before, .opening::after {
-  content: "";
-  position: absolute;
-  background: rgba(255,255,255,.055);
-}
-.opening::before { width: 1px; height: 100%; left: 50%; }
-.opening::after { height: 1px; width: 100%; top: 50%; }
 .opening-index { position: absolute; top: 32px; left: 34px; color: var(--muted-dark); }
+.opening-crosshair { position: absolute; z-index: 1; inset: 0; pointer-events: none; }
+.opening-crosshair i { position: absolute; display: block; background: rgba(255,255,255,.14); will-change: left, top; }
+.opening-crosshair i:first-child { top: 0; bottom: 0; left: var(--cursor-x); width: 1px; transform: translateX(-.5px); }
+.opening-crosshair i:nth-child(2) { left: 0; right: 0; top: var(--cursor-y); height: 1px; transform: translateY(-.5px); }
+.opening-crosshair span {
+  position: absolute;
+  left: var(--cursor-x);
+  top: var(--cursor-y);
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: #e7e7e3;
+  box-shadow: 0 0 0 5px rgba(255,255,255,.05);
+  transform: translate(-50%, -50%);
+}
 .opening-copy {
   position: absolute;
   z-index: 2;
@@ -85,28 +93,8 @@ button { font: inherit; }
 }
 .opening-copy p { margin: 0; font-size: clamp(23px, 3.2vw, 48px); font-weight: 300; line-height: 1.46; letter-spacing: -.04em; }
 .opening-copy p:first-child { color: rgba(255,255,255,.44); }
-.opening-axis {
-  position: absolute;
-  z-index: 3;
-  top: 50%;
-  left: 12%;
-  width: 76%;
-  height: 1px;
-  transition: transform .35s cubic-bezier(.2,.8,.2,1);
-}
-.opening-axis i {
-  display: block;
-  width: 100%;
-  height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(255,255,255,.32) 15%, rgba(255,255,255,.32) 85%, transparent);
-  transform: scaleX(0);
-  animation: axis-reveal 1.8s .3s cubic-bezier(.2,.7,.2,1) forwards;
-}
-.axis-point { position: absolute; top: -2px; left: 50%; width: 5px; height: 5px; border-radius: 50%; background: #e7e7e3; opacity: 0; animation: fade-in 1s 1.8s forwards; }
 .scroll-cue { position: absolute; bottom: 34px; left: 50%; display: flex; align-items: center; gap: 10px; color: rgba(255,255,255,.42); transform: translateX(-50%); }
 .scroll-cue i { width: 26px; height: 1px; background: currentColor; animation: cue 2.2s infinite ease-in-out; transform-origin: left; }
-@keyframes axis-reveal { to { transform: scaleX(1); } }
-@keyframes fade-in { to { opacity: 1; } }
 @keyframes cue { 0%,100% { transform: scaleX(.35); opacity: .4; } 50% { transform: scaleX(1); opacity: 1; } }
 
 /* Chaos */
@@ -303,10 +291,6 @@ button { font: inherit; }
 /* Arrival */
 .arrival { position: relative; min-height: 165svh; padding: 18vh 7vw 0; overflow: hidden; }
 .arrival::before { content: ""; position: absolute; inset: 0; background-image: radial-gradient(rgba(255,255,255,.12) .65px, transparent .65px); background-size: 24px 24px; opacity: .16; mask-image: radial-gradient(circle, black 0, transparent 68%); }
-.arrival-path { position: absolute; top: 8vh; left: 50%; height: 37vh; transition: transform .7s ease-out; }
-.arrival-path i { position: absolute; display: block; left: 0; top: 0; width: 1px; height: 100%; background: linear-gradient(transparent, rgba(255,255,255,.38)); }
-.arrival-path i:nth-child(2) { top: 100%; left: -5px; width: 11px; height: 11px; border: 1px solid rgba(255,255,255,.48); background: var(--black); transform: rotate(45deg); }
-.arrival-path i:nth-child(3) { top: 100%; left: -40vw; width: 80vw; height: 1px; background: linear-gradient(90deg, transparent, rgba(255,255,255,.28), transparent); }
 .archive-door {
   position: relative;
   width: min(680px, 76vw);
@@ -317,9 +301,6 @@ button { font: inherit; }
   transition: transform .7s ease-out;
   transform-style: preserve-3d;
 }
-.archive-door::before, .archive-door::after { content: ""; position: absolute; background: var(--line-dark); }
-.archive-door::before { left: 50%; top: 0; width: 1px; height: 100%; }
-.archive-door::after { left: 0; top: 50%; width: 100%; height: 1px; }
 .door-corners i { position: absolute; width: 18px; height: 18px; border-color: rgba(255,255,255,.7); }
 .door-corners i:nth-child(1) { left: -1px; top: -1px; border-left: 2px solid; border-top: 2px solid; }
 .door-corners i:nth-child(2) { right: -1px; top: -1px; border-right: 2px solid; border-top: 2px solid; }
@@ -398,7 +379,6 @@ button { font: inherit; }
   .opening-copy { width: 86vw; text-align: left; }
   .opening-copy p { font-size: clamp(26px, 8vw, 42px); }
   .opening-copy p:first-child { margin-bottom: 9px; }
-  .opening-axis { left: 7%; width: 86%; }
   .chaos-grid { background-size: 25vw 25vw; }
   .chaos-title { text-align: left; width: 77vw; }
   .chaos-title strong { font-size: 13vw; }
