@@ -17,20 +17,19 @@ npm run build
 
 ## 接入 delee.top
 
-推荐把本项目部署到 `intro.delee.top`。主站在访客没有 `delee_intro_seen=1` Cookie 时跳转到引入页；访客点击页面底部的“正式进入 delee.top”后，引入页会写入一个有效期一年的 `.delee.top` 共享 Cookie，并返回主站。
+本项目部署在 `delee.top` 根域名，并通过 Vercel Routing Middleware 与现有正式站组合：
 
-主站首次访问判断的伪代码：
+- 首次访问 `delee.top/`：显示引入页。
+- 点击“正式进入 delee.top”：写入有效期一年的 `.delee.top` Cookie，并在同一域名下进入正式站。
+- 后续访问 `delee.top/`：直接显示正式站。
+- 访问 `delee.top/?intro=1`：即使已有 Cookie，也可重新查看引入页。
 
-```ts
-if (!cookies.get('delee_intro_seen')) {
-  redirect('https://intro.delee.top')
-}
-```
+正式站当前由 `middleware.ts` 透明代理至 `personal-site-psi-sand.vercel.app`，浏览器地址仍保持为 `delee.top`。
 
-按钮目标默认是 `https://delee.top`，也可在部署环境中设置：
+按钮目标默认是 `/?enter=1`，也可在部署环境中覆盖：
 
 ```bash
-VITE_MAIN_SITE_URL=https://delee.top
+VITE_MAIN_SITE_URL=/?enter=1
 ```
 
 在本地或非 `delee.top` 域名预览时，点击按钮仍会记录到 `localStorage`，但浏览器安全策略不允许该站点写入 `.delee.top` Cookie。

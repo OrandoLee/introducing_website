@@ -1,6 +1,6 @@
 import { PointerEvent, useState } from 'react'
 
-const MAIN_SITE_URL = import.meta.env.VITE_MAIN_SITE_URL ?? 'https://delee.top'
+const MAIN_SITE_URL = import.meta.env.VITE_MAIN_SITE_URL ?? '/?enter=1'
 
 function rememberIntroduction() {
   try {
