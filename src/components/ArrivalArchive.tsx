@@ -24,9 +24,6 @@ export function ArrivalArchive() {
   return (
     <section className="arrival dark-section" onPointerMove={move} aria-label="抵达个人档案">
       <div className="section-meta micro"><span>06 / ARRIVAL</span><span>你主动抵达</span></div>
-      <div className="arrival-path" style={{ transform: `translate3d(${pointer.x * 5}px, ${pointer.y * 4}px, 0)` }}>
-        <i /><i /><i />
-      </div>
       <div className="archive-door" style={{ transform: `perspective(900px) rotateY(${pointer.x * 1.6}deg) rotateX(${-pointer.y * 1.2}deg)` }}>
         <div className="door-corners"><i /><i /><i /><i /></div>
         <div className="door-title">
