@@ -14,10 +14,9 @@ export const config = {
 export default function middleware(request: Request) {
   const incoming = new URL(request.url)
   const isHome = incoming.pathname === '/'
-  const forceIntroduction = incoming.searchParams.get('intro') === '1'
   const enteringSite = incoming.searchParams.get('enter') === '1'
 
-  if (isHome && (forceIntroduction || (!enteringSite && !hasSeenIntroduction(request)))) {
+  if (isHome && !enteringSite && !hasSeenIntroduction(request)) {
     return next()
   }
 
