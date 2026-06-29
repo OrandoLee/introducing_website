@@ -8,13 +8,19 @@ function hasSeenIntroduction(request: Request) {
 }
 
 export const config = {
-  matcher: '/((?!assets/|marks/).*)',
+  matcher: '/((?!assets/|marks/|index\\.html$).*)',
 }
 
 export default function middleware(request: Request) {
   const incoming = new URL(request.url)
   const isHome = incoming.pathname === '/'
+  const isIntroduction = incoming.pathname === '/intro' || incoming.pathname === '/intro/'
   const enteringSite = incoming.searchParams.get('enter') === '1'
+
+  if (isIntroduction) {
+    const introduction = new URL('/index.html', incoming)
+    return rewrite(introduction)
+  }
 
   if (isHome && !enteringSite && !hasSeenIntroduction(request)) {
     return next()

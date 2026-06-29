@@ -22,6 +22,7 @@ npm run build
 - 首次访问 `delee.top/`：显示引入页。
 - 点击“正式进入 delee.top”：写入有效期一年的 `.delee.top` Cookie，并在同一域名下进入正式站。
 - 后续访问 `delee.top/`：直接显示正式站。
+- 访问 `delee.top/intro`：无论是否已有 Cookie，都可重新观看引入页。
 
 正式站当前由 `middleware.ts` 透明代理至 `personal-site-psi-sand.vercel.app`，浏览器地址仍保持为 `delee.top`。
 
