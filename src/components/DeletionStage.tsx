@@ -23,7 +23,7 @@ export function DeletionStage() {
       <div className="section-meta micro"><span>04 / REDUCTION</span><span>{allDeleted ? '边界已建立' : '点击或拖动删除'}</span></div>
       <div className="deletion-intro">
         <p className="micro">THE DIFFICULT PART</p>
-        <h2>增加，只需要一个念头。<br /><span>删除，需要一个判断。</span></h2>
+        <h2 className="reveal-text" data-reveal>增加，只需要一个念头。<br /><span>删除，需要一个判断。</span></h2>
       </div>
       <div className="module-field" aria-live="polite">
         {modules.map((label, index) => {

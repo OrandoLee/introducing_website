@@ -24,7 +24,7 @@ export function ArrivalArchive() {
   return (
     <section className="arrival dark-section" onPointerMove={move} aria-label="抵达个人档案">
       <div className="section-meta micro"><span>06 / ARRIVAL</span><span>你主动抵达</span></div>
-      <div className="archive-door" style={{ transform: `perspective(900px) rotateY(${pointer.x * 1.6}deg) rotateX(${-pointer.y * 1.2}deg)` }}>
+      <div className="archive-door reveal-frame" data-reveal style={{ transform: `perspective(900px) rotateY(${pointer.x * 1.6}deg) rotateX(${-pointer.y * 1.2}deg)` }}>
         <div className="door-corners"><i /><i /><i /><i /></div>
         <div className="door-title">
           <span className="micro">EST. / 2026</span>
@@ -39,7 +39,7 @@ export function ArrivalArchive() {
         <p>而是你选择进入这里。</p>
       </div>
       <footer>
-        <p>当有人真正想看见我时，这里有一个足够安静、稳定、清晰的地方，让他们抵达。</p>
+        <p className="reveal-text" data-reveal>当有人真正想看见我时，这里有一个足够安静、稳定、清晰的地方，让他们抵达。</p>
         <div className="arrival-cta">
           <span className="micro">THE ARCHIVE IS READY</span>
           <a href={MAIN_SITE_URL} onClick={rememberIntroduction}>

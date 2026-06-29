@@ -13,7 +13,7 @@ export function ThreeLaws() {
       <div className="section-meta micro"><span>03 / PRINCIPLES</span><span>三项铁律</span></div>
       <div className="laws-heading">
         <p className="micro">BOUNDARIES CREATE FORM</p>
-        <h2>边界不是限制。<br />边界让表达成立。</h2>
+        <h2 className="reveal-text" data-reveal>边界不是限制。<br />边界让表达成立。</h2>
       </div>
       <div className="laws-list">
         {laws.map(([name, en, description], index) => (

@@ -44,7 +44,7 @@ export function ChaosField() {
           style={{ filter: `blur(${overload * 9}px)`, opacity: 1 - overload * 0.72 }}
         >
           <span>最初，我想把一切</span>
-          <strong>都放进去。</strong>
+          <strong className="reveal-text" data-reveal>都放进去。</strong>
         </div>
         {fragments.map((fragment, index) => {
           const delay = index * 0.045
