@@ -405,14 +405,33 @@ button { font: inherit; }
   .delete-module { height: 110px; }
   .deletion-result { padding: 24px; }
   .deletion-result > div { flex-direction: column; gap: 10px; }
-  .social-columns { inset: 12vh 20px 22vh; grid-template-columns: 1fr; }
-  .noise-side, .archive-side { position: absolute; inset: 0; padding: 22px; border: 0; }
+  .social-columns {
+    inset: 12svh 20px auto;
+    height: min(58svh, 500px);
+    grid-template-columns: 1fr;
+    overflow: hidden;
+  }
+  .noise-side, .archive-side {
+    position: absolute;
+    inset: 0;
+    padding: 22px;
+    border: 0;
+    transform: none !important;
+  }
+  .social-columns .mobile-panel-hidden { visibility: hidden; opacity: 0 !important; }
   .archive-side { background: rgba(243,243,239,.96); }
   .archive-index div { grid-template-columns: 36px minmax(120px, 1fr) .7fr; }
   .archive-index .archive-mark { width: 132px; }
   .feed-shell { margin-top: 4vh; }
-  .social-narrative { left: 22px; right: 22px; bottom: 6vh; display: block; }
-  .quiet-copy { text-align: left; }
+  .social-narrative {
+    left: 22px;
+    right: 22px;
+    bottom: 6svh;
+    display: grid;
+    grid-template-columns: 1fr;
+  }
+  .noise-copy, .quiet-copy { grid-area: 1 / 1; }
+  .quiet-copy { grid-column: 1; text-align: left; }
   .social-narrative p { display: block; margin-bottom: 4px; }
   .arrival { padding-left: 20px; padding-right: 20px; }
   .archive-door { width: 86vw; height: 58vh; min-height: 390px; margin-top: 18vh; }

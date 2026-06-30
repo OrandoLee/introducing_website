@@ -14,13 +14,14 @@ export function SocialNoise() {
   const progress = useSectionProgress(ref)
   const quiet = Math.min(1, Math.max(0, (progress - 0.1) / 0.72))
   const noiseOpacity = Math.max(0.04, 1 - quiet * 0.96)
+  const showArchiveOnMobile = quiet >= 0.58
 
   return (
     <section className="social light-section" ref={ref} aria-label="从社交平台到个人档案">
       <div className="sticky-stage social-stage">
         <div className="section-meta micro"><span>05 / OWNERSHIP</span><span>{quiet > 0.78 ? '表达，不是反馈' : '反馈正在介入'}</span></div>
         <div className="social-columns">
-          <div className="noise-side" style={{ opacity: noiseOpacity, filter: `blur(${quiet * 8}px)`, transform: `translateX(${-quiet * 36}px)` }}>
+          <div className={`noise-side${showArchiveOnMobile ? ' mobile-panel-hidden' : ''}`} style={{ opacity: noiseOpacity, filter: `blur(${quiet * 8}px)`, transform: `translateX(${-quiet * 36}px)` }}>
             <div className="column-label micro"><i />PLATFORM / LIVE FEEDBACK</div>
             <div className="feed-shell">
               <div className="feed-lines"><i /><i /><i /></div>
@@ -29,7 +30,7 @@ export function SocialNoise() {
               </div>
             </div>
           </div>
-          <div className="archive-side" style={{ opacity: 0.18 + quiet * 0.82, transform: `translateX(${(1 - quiet) * 34}px)` }}>
+          <div className={`archive-side${showArchiveOnMobile ? '' : ' mobile-panel-hidden'}`} style={{ opacity: 0.18 + quiet * 0.82, transform: `translateX(${(1 - quiet) * 34}px)` }}>
             <div className="column-label micro"><i />QUIET / ARCHIVE</div>
             <div className="archive-index">
               {archiveMarks.map((item, index) => (
